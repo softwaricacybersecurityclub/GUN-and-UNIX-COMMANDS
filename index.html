@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GNU and UNIX command</title>
+</head>
+<body>
+    <h1 id="work-on-the-command-line">Work on the command line</h1>
+<p>We use shell to type in a terminal.
+It is a command line interperter.
+Different types od shell are </p>
+<ul>
+<li>sh </li>
+<li>zsh</li>
+<li>csh</li>
+<li>ksh</li>
+</ul>
+<p>We can write a program called script using bash.</p>
+<p>Environment variable are a way to store information that can affect the running processes.</p>
+<blockquote>
+<p>Note hidden file in linux start with (.) dote.</p>
+</blockquote>
+<pre><code class="lang-bash">env <span class="hljs-comment">#show all the variable in your current shell.</span>
+<span class="hljs-built_in">which</span> <span class="hljs-comment">#show the location of the command</span>
+<span class="hljs-built_in">which</span> ls <span class="hljs-comment"># and other commend</span>
+<span class="hljs-built_in">pwd</span> <span class="hljs-comment"># shows the current directory</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-variable">$HISTFILE</span> <span class="hljs-comment">#shows the location of history file which is used by bash shell to give a previous command</span>
+ls <span class="hljs-comment">#shows all the file in the current directory</span>
+ls <span class="hljs-_">-a</span> <span class="hljs-comment">#same a ls but also show all the hidden file </span>
+cat <span class="hljs-comment"># it is used to read the file</span>
+less <span class="hljs-comment"># show the file page by page</span>
+<span class="hljs-built_in">history</span> <span class="hljs-comment"># print all </span>
+<span class="hljs-built_in">export</span> HISTFILE=/home/<span class="hljs-built_in">command</span> <span class="hljs-comment"># this wills save history in command file</span>
+.bashrc <span class="hljs-comment"># is a file that runs every thime we login we can change it according to the need</span>
+vi &amp;&amp; vim <span class="hljs-comment"># is a built in text editer in linux</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-comment"># is used to print in a terminal</span>
+<span class="hljs-built_in">set</span> &amp;&amp; <span class="hljs-built_in">unset</span> <span class="hljs-comment"># it is a build into command in a linux which is used to set or ubset the values of various shell options and positional parameters that are built into your shell</span>
+man <span class="hljs-comment">#It is used to know the discribe version of a command with how to use</span>
+man man <span class="hljs-comment"># to know how to use man</span>
+uname <span class="hljs-comment"># it print ststem information</span>
+uname <span class="hljs-_">-a</span> <span class="hljs-comment"># mostly used as it gives all the information of a system</span>
+<span class="hljs-built_in">echo</span> <span class="hljs-string">'ls ; la'</span> <span class="hljs-comment"># '' will quote commend </span>
+<span class="hljs-built_in">echo</span> ls \; ls <span class="hljs-comment"># backslash will also work same a ''</span>
+<span class="hljs-built_in">type</span> la <span class="hljs-comment"># type is used to give information about command</span>
+<span class="hljs-built_in">which</span> cat <span class="hljs-comment"># tells the location of commend</span>
+cut <span class="hljs-comment"># is used to remove section from each line of file</span>
+cut <span class="hljs-_">-d</span>: <span class="hljs-_">-f</span>2 hi.txt <span class="hljs-comment"># cuts line with : and get the second word </span>
+cat -vet file.txt <span class="hljs-comment"># shows all the tabs and enter used</span>
+expand file3.txt <span class="hljs-comment"># remove tab and add spaces</span>
+unexpand <span class="hljs-_">-a</span> file.txt <span class="hljs-comment">#add tabs in space</span>
+wc file <span class="hljs-comment">#tells about new line count, word count, and bytes counts for a file</span>
+fmt file.txt <span class="hljs-comment"># change file line to make it readable</span>
+head file <span class="hljs-comment"># read the top 10 line of the file and we can use -n to specify any</span>
+tail file <span class="hljs-comment"># read the last 10 lines of the files and can use -n to specify any number</span>
+join file1 file2 <span class="hljs-comment"># is used to join two file together if they share a common field</span>
+nl file <span class="hljs-comment"># adds file number to a file</span>
+od file <span class="hljs-comment"># gives octal representition of file</span>
+paste file1 file2 <span class="hljs-comment"># works same as join but doesn't need common field</span>
+pr <span class="hljs-comment"># used to make file look better before print</span>
+sed <span class="hljs-comment"># has verious function wsed in text</span>
+<span class="hljs-built_in">echo</span> sunday | sed <span class="hljs-_">-e</span> s/day/night/ <span class="hljs-comment"># gives sunnight</span>
+sort file1 <span class="hljs-comment"># sort the file in alphabetical</span>
+split <span class="hljs-comment"># split files each of 1000 lines</span>
+<span class="hljs-built_in">echo</span> hello | tr <span class="hljs-_">-d</span> l <span class="hljs-comment"># remove l from word</span>
+unique hi.txt <span class="hljs-comment"># remove repating in adjacent line</span>
+bzip2 hi.txt <span class="hljs-comment">#zip file in .bz2 extension</span>
+bzcat hi.txt.bz2 <span class="hljs-comment"># cat the file without zip</span>
+bunzip2 hi.txt.bz2 <span class="hljs-comment"># unzip the file</span>
+gzip hello.txt <span class="hljs-comment"># zip file with .gz</span>
+zcat hello.txt.gz <span class="hljs-comment"># cat the decompressed file with out decompressing</span>
+gunzip hello.txt.gz <span class="hljs-comment">#decompressed gz file</span>
+zx &amp;&amp; xzcat &amp;&amp; unxz <span class="hljs-comment">#work as gzip,zcat, and gunzip</span>
+md5sum hello.txt <span class="hljs-comment">#gives md5 hash of a file</span>
+sha256sum hello.txt <span class="hljs-comment">#gives sha hash</span>
+sha512sum hello.txt <span class="hljs-comment">#gives sha hash but better the n sha256sum</span>
+</code></pre>
+<h2 id="perform-basic-file-mangement">Perform basic file mangement</h2>
+<pre><code class="lang-bash"><span class="hljs-keyword">ls</span> ~ # home directory
+<span class="hljs-keyword">cp</span> file1 copyfile # copies <span class="hljs-keyword">file</span>
+<span class="hljs-built_in">mkdir</span> test # makes <span class="hljs-keyword">a</span> directory
+mv test /home/testing # <span class="hljs-keyword">move</span> <span class="hljs-keyword">a</span> <span class="hljs-keyword">file</span> <span class="hljs-keyword">to</span> testing
+touch <span class="hljs-keyword">hi</span> # creates <span class="hljs-keyword">a</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">file</span>
+rm <span class="hljs-keyword">hi</span> # <span class="hljs-built_in">remove</span> the <span class="hljs-keyword">file</span>
+rm -r test # <span class="hljs-built_in">remove</span> <span class="hljs-keyword">a</span> directory <span class="hljs-built_in">and</span> the <span class="hljs-keyword">file</span>
+rmdir test # <span class="hljs-built_in">remove</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">empty</span> directory
+<span class="hljs-keyword">file</span> <span class="hljs-keyword">hi</span> # gives the information about <span class="hljs-keyword">file</span>
+<span class="hljs-keyword">find</span> -name <span class="hljs-string">"file"</span> # used <span class="hljs-keyword">to</span> <span class="hljs-keyword">find</span> <span class="hljs-keyword">file</span> name <span class="hljs-keyword">file</span>
+tar cvf <span class="hljs-keyword">file</span>.tar file1 file2 #makes <span class="hljs-keyword">a</span> archive of many <span class="hljs-keyword">file</span> <span class="hljs-keyword">to</span> one
+dd <span class="hljs-keyword">if</span>=<span class="hljs-symbol">&lt;input&gt;</span> of=<span class="hljs-symbol">&lt;output&gt;</span> [<span class="hljs-keyword">options</span>]#can dump entire hardisk <span class="hljs-built_in">or</span> partition <span class="hljs-keyword">to</span> single <span class="hljs-keyword">file</span>
+xxd out # gives haxdump of the <span class="hljs-keyword">file</span>
+</code></pre>
+<h2 id="use-of-streams-pipes-and-redirects">use of streams, pipes and redirects</h2>
+<p>There are three standard streams that the shell uses.</p>
+<ul>
+<li>STDIN - 0</li>
+<li>STDOUT - 1</li>
+<li>STDERR - 2
+```bash
+ls -l &gt; ls.txt # redirest the output in a file and rewrite all the data if there was previous
+ls hello 2&gt; error.txt # redirect the error output
+ls &gt;&gt; ls.txt # it append in the previous file
+short &lt; input.txt # redirect the input
+ls | grep hi # | is used to take the output of a command as the input of other
+ls -1 | xargs wc # xargs used to give the output of file one by one command
+ls | tee | hi.txt #show output and do a redirection</li>
+</ul>
+<pre><code>
+<span class="hljs-comment">## Create, monitor and kill processes</span>
+
+```bash
+ping google.com <span class="hljs-comment"># meaures the time taken to travell the reguest </span>
+ping google.com + (ctrl + z) <span class="hljs-comment">#It suspand the command</span>
+<span class="hljs-built_in">bg</span> <span class="hljs-comment"># resume the command in the background</span>
+<span class="hljs-built_in">source</span> script.sh <span class="hljs-comment"># used to run script in the same shell</span>
+ping google.com &amp; <span class="hljs-comment">#background the command as soon as we start | fg is used to get resume the access</span>
+nohup <span class="hljs-comment"># is used to supress all the message in a terminal</span>
+cat nohup.out <span class="hljs-comment"># to read the output </span>
+ps <span class="hljs-comment"># used to show currently running process</span>
+ps a <span class="hljs-comment"># show all the process attached to a terminal</span>
+ps aux <span class="hljs-comment"># show process in a cleaner way</span>
+<span class="hljs-built_in">kill</span> (process id) <span class="hljs-comment"># to kill the process</span>
+<span class="hljs-built_in">kill</span> -TERM (process id) <span class="hljs-comment"># terminate and kill the process</span>
+<span class="hljs-built_in">kill</span> all ping <span class="hljs-comment"># kall all the ping process</span>
+pkill ping <span class="hljs-comment"># treminated all the ping process</span>
+top <span class="hljs-comment"># continually updating screen of process</span>
+uptime <span class="hljs-comment"># show the uptime of a os</span>
+free <span class="hljs-comment"># gives memory statistics</span>
+</code></pre><h3 id="kill-signals">Kill signals</h3>
+<ul>
+<li>SIGINT - interrupt signal - CTRL + c</li>
+<li>SIGKILL - kill signal </li>
+<li>SIGSTOP -pause signal - CTRL + z</li>
+<li>SIGTERM - termination signal</li>
+</ul>
+<h2 id="watch-and-tmux">Watch and Tmux</h2>
+<pre><code class="lang-bash">watch -n <span class="hljs-number">1</span> date  #used <span class="hljs-keyword">to</span> run commands prediodically
+tmux # we can open multiple window <span class="hljs-keyword">in</span> one terminal (ctrl + b ) &amp; (sift +<span class="hljs-number">5</span>) <span class="hljs-keyword">to</span> <span class="hljs-keyword">add</span> another terminal (ctrl + b <span class="hljs-keyword">and</span> arrow key <span class="hljs-keyword">to</span> switch <span class="hljs-keyword">in</span> terminal) ctrl +b +c <span class="hljs-keyword">to</span> <span class="hljs-keyword">add</span> full screen terminal
+</code></pre>
+<h2 id="how-to-modify-process-execution-priorities">How to Modify process execution priorities</h2>
+<h3 id="job-priorities">Job Priorities</h3>
+<ul>
+<li>Nice value determines how much CPU times a process will get</li>
+<li>range from -20 (Higher priority) to 19 (Lowest priority)</li>
+<li>0 is the default nice value</li>
+</ul>
+<pre><code class="lang-bash">nohub nice -<span class="hljs-number">15</span> ping google.com &amp;&amp; top # <span class="hljs-keyword">set</span> the nice value <span class="hljs-keyword">of</span> ping <span class="hljs-keyword">to</span> <span class="hljs-number">15</span>
+</code></pre>
+<h2 id="search-text-files-using-regular-expressions">Search text files using regular expressions</h2>
+<p><strong> Regular expression </strong></p>
+<ul>
+<li>It is a sequence of symbols and characters which can express a string or pattern to be searched for within a pice of text where words can be short to regex too.
+<strong> Symbols that can be used with regular expression </strong></li>
+<li>| - or </li>
+<li>() - grouping</li>
+<li>$ - end of a line</li>
+<li>^ - start of a line</li>
+<li>. - one character</li>
+</ul>
+<p><strong> Quantifiers helps us to match specific characters </strong></p>
+<ul>
+<li>? - 0 or 1 occurrence of the preceding element</li>
+<li><ul>
+<li><ul>
+<li>0 or more occurrences of the preceding element</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><ul>
+<li><ul>
+<li>1 or more occurrences of the preceding element</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>{n} - the preceding item in matched exactly n times</li>
+<li>{min,} - the preseding items is matched min or more times</li>
+<li>{min,max} - the preceding items is matched at least min times but not more then max times
+<strong> grep = Globally search for a Regular Expression and Print </strong>
+It uses symbols and regular expression to search plain text.
+Versions of grip are</li>
+<li>grep</li>
+<li>egrip </li>
+<li>fgrep</li>
+<li>```bash
+grep apple <em> # search apple in all files
+grep &#39;^apple&#39; </em> # search apple in the start of line
+grep --help # show all the possible command we can use with grep
+egrep &#39;l+&#39; input.txt # search all the words that has l
+sed -e &#39;s/l+/x/&#39; input.txt &gt; out.txt #replace all l with x</li>
+</ul>
+<p>```</p>
+<h2 id="performing-basic-file-editing-operations-using-vi">Performing basic file editing operations using vi</h2>
+<table>
+<thead>
+<tr>
+<th>command</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vi <filename></td>
+<td>Open or edit a file.</td>
+</tr>
+<tr>
+<td>i</td>
+<td>Switch to Insert mode.</td>
+</tr>
+<tr>
+<td>Esc</td>
+<td>Switch to Command mode.</td>
+</tr>
+<tr>
+<td>:w</td>
+<td>Save and continue editing.</td>
+</tr>
+<tr>
+<td>:wq or ZZ</td>
+<td>Save and quit/exit vi.</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>Quit vi and do not save changes.</td>
+</tr>
+<tr>
+<td>yy</td>
+<td>Yank (copy a line of text).</td>
+</tr>
+<tr>
+<td>p</td>
+<td>Paste a line of yanked text below the current line.</td>
+</tr>
+<tr>
+<td>o</td>
+<td>Open a new line under the current line.</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Open a new line above the current line.</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Append to the end of the line.</td>
+</tr>
+<tr>
+<td>a</td>
+<td>Append after the cursor&#39;s current position.</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Insert text at the beginning of the current line.</td>
+</tr>
+<tr>
+<td>b</td>
+<td>Go to the beginning of the word.</td>
+</tr>
+<tr>
+<td>e</td>
+<td>Go to the end of the word.</td>
+</tr>
+<tr>
+<td>x</td>
+<td>Delete a single character.</td>
+</tr>
+<tr>
+<td>dd</td>
+<td>Delete an entire line.</td>
+</tr>
+<tr>
+<td>Xdd</td>
+<td>Delete X number of lines.</td>
+</tr>
+<tr>
+<td>G</td>
+<td>Go to the last line in a file.</td>
+</tr>
+<tr>
+<td>gg</td>
+<td>Go to the first line</td>
+</tr>
+<tr>
+<td>h</td>
+<td>Move left one character.</td>
+</tr>
+<tr>
+<td>j</td>
+<td>Move down one line.</td>
+</tr>
+<tr>
+<td>k</td>
+<td>Move up one line.</td>
+</tr>
+<tr>
+<td>l</td>
+<td>Move right one character.</td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>
