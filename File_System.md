@@ -1,0 +1,64 @@
+# Create partitions and filesystems
+Let's have a look of boot partition.
+```
+df
+```
+```
+[ksab@ArchiKsab ~]$ df
+Filesystem       1K-blocks      Used Available Use% Mounted on
+dev                3989376         0   3989376   0% /dev
+run                3997524      1316   3996208   1% /run
+/dev/sdb3        117750672  37001440  74721612  34% /
+tmpfs              3997524     23204   3974320   1% /dev/shm
+tmpfs              3997524      4740   3992784   1% /tmp
+/dev/sdb1           613160       168    612992   1% /boot/efi
+/dev/mapper/home 960288476 318016112 593418724  35% /home
+tmpfs               799504        24    799480   1% /run/user/1000
+```
+>This command `df` report file system space usage in linux.
+
+Now have a look what is going with this partitions. For this we the following command in linux.
+```
+lsblk
+```
+```
+[ksab@ArchiKsab ~]$ lsblk
+NAME     MAJ:MIN RM   SIZE RO TYPE  MOUNTPOINTS
+sda        8:0    0 931.5G  0 disk  
+└─sda1     8:1    0 931.5G  0 part  
+  └─home 254:0    0 931.5G  0 crypt /home
+sdb        8:16   0 119.2G  0 disk  
+├─sdb1     8:17   0   600M  0 part  /boot/efi
+├─sdb2     8:18   0     4G  0 part  [SWAP]
+└─sdb3     8:19   0 114.7G  0 part  /
+sr0       11:0    1  1024M  0 rom   
+```
+Now lets move on to create partition of disk in linux.
+```
+fdisk /dev/sdb
+```
+The command prompt will change, and the `fdisk` dialogue where you can type in commands will open:
+```
+Welcome to fdisk (util-linux 2.34).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+Command (m for help):
+```
+If you are partitioning a new drive, before starting to create partitions first, you need to create a partition table. Skip this step if the device already has a partition table and you want to keep it. 
+`fdisk` supports several partitioning schemes. MBR and GPT are the two most popular partition scheme standards, that store the partitioning information on a drive in a different way.
+## MBR
+The **Master Boot Record** (MBR) is the information in the first sector of a hard disk or a removable drive. It identifies how and where the system's operating system (OS) is located in order to be booted (loaded) into the computer's main storage or random access memory (RAM). It allows 4 partitions with maximum disk of 2TB and required extended partitions.
+
+## GPT
+GPT is an abbreviation of **GUID Partition Table**, and is a newer standard that's slowly replacing MBR. Unlike an MBR partition table, GPT stores the data about how all the partitions are organized and how to boot the OS throughout the drive. It is associated with UEFI and hard disk size limit depends on the OS and basically unlimited partitions.
+
+## Filesystems
+* ext2 - developed in 1993, replaced ext
+* ext3 - introduced in 2001 , allows journaling
+* ext4 - introduced in 2008, allows huge files and filesystems
+* reiserfs - introduced in 2001, resizable, journalling filesystem
+* btrfs - b-tree filesystem, supports snapshots, checksums, pooling
+	* Online defragmentation and an auto
+	* online resizing
+	* online filesystem check
