@@ -1,0 +1,16 @@
+# Fundamentals of Internet Protocols
+## IP Addresses
+It is a unique address assigned to a device connected in a network that helps it to be identified on the network. 
+
+### Types of IP Addresses
+- Public IP Addresses (*works on the internet*)
+- Private IP Addresses (*works on an internal network*)
+
+### Two IP Versions
+- IPv4
+- IPv6
+
+#### IPv4
+
+> They are 32 bit address. So, its limitation is that there can only be 4,294,967,296 (2^32) number of IPv4 addresses in the world. 
+
